@@ -1,0 +1,25 @@
+Assignment 1 - Git commands
+
+# a. create a new folder
+mkdir assignment1
+cd assignment1
+
+# b. put the files in the folder
+touch Code.txt Log.txt Output.txt
+
+# set up the repo and link it to github
+git init
+git remote add origin https://github.com/Abhinav-1825/Git-Assignment 
+
+# c. stage only Code.txt and Output.txt
+git add Code.txt Output.txt
+
+# d. commit
+git commit -m "Add Code.txt and Output.txt"
+
+# e. push to github
+git branch -M master
+git push -u origin master
+
+# Log.txt stays untracked, you can check with
+git status

@@ -1,0 +1,43 @@
+Assignment 3 - Git commands
+
+# 1. working directory and branches
+mkdir assignment3
+cd assignment3
+git init
+git remote add origin https://github.com/Abhinav-1825/Git-Assignment
+
+# 2. commit main.txt on master
+touch main.txt
+git add main.txt
+git commit -m "Add main.txt"
+
+# create the branches
+git branch Develop
+git branch F1
+git branch f2
+
+# 3. add a file in each branch
+git checkout Develop
+touch develop.txt
+git add develop.txt
+git commit -m "Add develop.txt"
+
+git checkout F1
+touch f1.txt
+git add f1.txt
+git commit -m "Add f1.txt"
+
+git checkout f2
+touch f2.txt
+git add f2.txt
+git commit -m "Add f2.txt"
+
+# 4. push everything to github
+git checkout master
+git push origin master Develop F1 f2
+
+# 5. delete f2 locally (-D because it was never merged into master)
+git branch -D f2
+
+# 6. delete f2 on github
+git push origin --delete f2

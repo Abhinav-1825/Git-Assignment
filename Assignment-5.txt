@@ -1,0 +1,59 @@
+Assignment 5 - Git Flow commands
+
+Git Flow branches: master (production), develop (integration),
+feature/* (new work), release/* (release prep), hotfix/* (urgent fixes on production).
+
+# 1 and 2. set up the repo and the main branches
+mkdir assignment5
+cd assignment5
+git init
+git checkout -b master
+echo "init" > README.txt
+git add .
+git commit -m "Initial commit"
+git branch develop
+
+# 3. feature branch -> develop -> release -> master
+git checkout develop
+git checkout -b feature/login
+echo "login" > login.txt
+git add login.txt
+git commit -m "Add login feature"
+
+# merge feature into develop
+git checkout develop
+git merge --no-ff feature/login -m "Merge feature/login into develop"
+git branch -d feature/login
+
+# release branch from develop
+git checkout -b release/1.0
+echo "v1.0" > version.txt
+git add version.txt
+git commit -m "Prepare release 1.0"
+
+# release goes into master and also back into develop
+git checkout master
+git merge --no-ff release/1.0 -m "Merge release/1.0"
+git tag v1.0
+
+git checkout develop
+git merge --no-ff release/1.0 -m "Merge release/1.0 back into develop"
+git branch -d release/1.0
+
+# 4. hotfix: urgent.txt straight from master
+git checkout -b hotfix/urgent master
+echo "urgent" > urgent.txt
+git add urgent.txt
+git commit -m "Add urgent.txt hotfix"
+
+git checkout master
+git merge --no-ff hotfix/urgent -m "Merge hotfix/urgent"
+git tag v1.0.1
+
+git checkout develop
+git merge --no-ff hotfix/urgent -m "Merge hotfix/urgent into develop"
+git branch -d hotfix/urgent
+
+# optional: push to github
+# git remote add origin /https://github.com/Abhinav-1825/Git-Assignment
+# git push -u origin master develop --tags

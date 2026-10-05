@@ -1,0 +1,51 @@
+Assignment 4 - Git commands
+
+# 1. master.txt on master
+mkdir assignment4
+cd assignment4
+git init
+git checkout -b master
+echo "master file" > master.txt
+git add master.txt
+git commit -m "Add master.txt"
+
+# 2. create the branches
+git branch public1
+git branch public2
+git branch private
+
+# 3. public1.txt on public1
+git checkout public1
+touch public1.txt
+git add public1.txt
+git commit -m "Add public1.txt"
+
+# 4. merge public1 into master
+git checkout master
+git merge public1
+
+# 5. merge public2 into master (nothing new there, so it says already up to date)
+git merge public2
+
+# 6. edit master.txt on private, stage and commit
+git checkout private
+echo "edited on private" >> master.txt
+git add master.txt
+git commit -m "Edit master.txt on private"
+
+# 7. update public1 and public2 with the private code
+git checkout public1
+git merge private
+git checkout public2
+git merge private
+
+# 8. update master too
+git checkout master
+git merge private
+
+# 9. finally bring everything back to private
+git checkout private
+git merge master
+
+# check
+git log --all --oneline --graph

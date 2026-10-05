@@ -1,0 +1,37 @@
+Assignment 2 - Git commands
+
+# 1. working directory with feature1.txt and feature2.txt on master
+mkdir assignment2
+cd assignment2
+git init
+git checkout -b master
+touch feature1.txt feature2.txt
+git add .
+git commit -m "Add feature1.txt and feature2.txt"
+
+# 2. create 3 branches
+git branch develop
+git branch feature1
+git branch feature2
+
+# 3. in develop create develop.txt (don't stage or commit)
+git checkout develop
+touch develop.txt
+
+# 4. stash it and go to feature1
+git stash -u
+git checkout feature1
+
+# 5. create new.txt in feature1, stage and commit
+touch new.txt
+git add new.txt
+git commit -m "Add new.txt"
+
+# 6. back to develop, unstash and commit
+git checkout develop
+git stash pop
+git add develop.txt
+git commit -m "Add develop.txt"
+
+# 7. check the result
+git log --all --oneline --graph
